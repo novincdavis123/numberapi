@@ -15,17 +15,14 @@ class New extends StatefulWidget {
 }
 
 class _NewState extends State<New> {
-  @override
-  void initState() {
-    fetchdata();
-    super.initState();
-  }
+
+
   List photos = [];
   Future<void> fetchdata() async {
-    final response = await http.get(Uri.parse('https://dummyjson.com/products'));
+    final response =
+        await http.get(Uri.parse('https://dummyjson.com/products'));
     final data = json.decode(response.body);
     setState(() {
-      
       photos = [data];
     });
   }
@@ -33,17 +30,20 @@ class _NewState extends State<New> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    leading: Image.network(photos[0]['products'][index]['thumbnail']),
-                    title: Text(photos[0]['products'][index]['title']),
-                    trailing: ,
-                  );
-                },
-              ),
+      body:SafeArea(
+        child: photos.isEmpty
+            ? Center(
+                child: ElevatedButton(onPressed: () {
+                  fetchdata();
+                }, child: Text('load'))): ListView.builder(
+          itemCount: photos[0]['products'].length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              leading: Image.network(photos[0]['products'][index]['thumbnail']),
+              title: Text(photos[0]['products'][index]['title']),
+            );
+          },
+        ),
       ),
     );
   }
