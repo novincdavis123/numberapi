@@ -38,6 +38,7 @@ class _NewState extends State<New> {
                 itemCount: photos.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
+                    leading: Image.network(photos[index]['products'][index]['thumbnail']),
                     title: Text(photos[index]['products'][index]['title']),
                   );
                 },
