@@ -41,6 +41,8 @@ class _NewState extends State<New> {
             return ListTile(
               leading: Image.network(photos[0]['products'][index]['thumbnail']),
               title: Text(photos[0]['products'][index]['title']),
+              subtitle: Text(photos[0]['products'][index]["brand"]),
+              trailing:Image.network(photos[0]['products'][index]['images'][0]),
             );
           },
         ),
