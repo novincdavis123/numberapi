@@ -35,11 +35,12 @@ class _NewState extends State<New> {
     return Scaffold(
       body: SafeArea(
         child: ListView.builder(
-                itemCount: photos.length,
+                itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                    leading: Image.network(photos[index]['products'][index]['thumbnail']),
-                    title: Text(photos[index]['products'][index]['title']),
+                    leading: Image.network(photos[0]['products'][index]['thumbnail']),
+                    title: Text(photos[0]['products'][index]['title']),
+                    trailing: ,
                   );
                 },
               ),
